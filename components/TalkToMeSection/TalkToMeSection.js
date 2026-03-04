@@ -54,16 +54,22 @@ export default function TalkToMeSection() {
     setErrors({});
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+          subject: `פנייה חדשה מאתר: ${formData.fullName}`,
+          name: formData.fullName,
+          phone: formData.phone,
+          message: formData.message || "(לא צוין)",
+        }),
       });
 
       const data = await res.json();
 
-      if (!res.ok) {
-        setErrors({ submit: data.error || "אירעה שגיאה. נסו שוב." });
+      if (!data.success) {
+        setErrors({ submit: "אירעה שגיאה. נסו שוב." });
         return;
       }
 
