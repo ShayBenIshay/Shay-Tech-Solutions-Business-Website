@@ -74,7 +74,7 @@ export default function TalkToMeSection() {
         return;
       }
 
-      event('contact_form_submit', { method: 'web3forms' });
+      event("contact_form_submit", { method: "web3forms" });
       setIsSent(true);
       setFormData({ fullName: "", phone: "", message: "" });
       setPrivacyConsent(false);
@@ -92,7 +92,7 @@ export default function TalkToMeSection() {
         <div className={styles.titleGroup}>
           <h2 className={`h2 ${styles.headline}`}>דברו איתי</h2>
           <p className={`h3 ${styles.subtitle}`}>
-            מוזמנים לפנות ישירות או להשאיר פרטים – ואחזור אליכם בהקדם.
+            תשאירו פרטים ואחזור אליכם בהקדם.
           </p>
         </div>
         <form
@@ -171,7 +171,12 @@ export default function TalkToMeSection() {
               />
               <span className={styles.consentText}>
                 אני מאשר/ת את{" "}
-                <Link href="/privacy-policy" className={styles.consentLink} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href="/privacy-policy"
+                  className={styles.consentLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   מדיניות הפרטיות
                 </Link>{" "}
                 ומסכים/ה לשימוש בפרטי לצורכי קשר ושירות.*

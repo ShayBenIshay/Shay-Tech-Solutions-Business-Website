@@ -12,6 +12,7 @@ const portfolioItems = [
     type: "חנות אינטרנטית",
     screenshot: imgImage23,
     hasRealImage: true,
+    cta: "לבניית חנות",
     href: "/portfolio/bartzemachjewelry",
   },
   {
@@ -19,6 +20,7 @@ const portfolioItems = [
     type: "תוסף",
     screenshot: imgNewsletterClub,
     hasRealImage: true,
+    cta: "לבניית תוסף",
     href: "/portfolio/newsletter-club",
   },
   {
@@ -26,6 +28,7 @@ const portfolioItems = [
     type: "שיפוץ אתר",
     screenshot: imgLapa,
     hasRealImage: true,
+    cta: "שיפוץ אתר",
     href: "/portfolio/lapa",
   },
   {
@@ -33,6 +36,7 @@ const portfolioItems = [
     type: "פיתוח מותאם אישית",
     screenshot: null,
     hasRealImage: false,
+    cta: "לבניית בוט",
     href: "/portfolio/telegram-bot",
   },
 ];
@@ -65,7 +69,7 @@ function PortfolioCard({ item }) {
         </div>
         <div className={styles.cardActions}>
           <OpenContactModalButton className="btn-primary">
-            כזה אני רוצה
+            {item.cta}
           </OpenContactModalButton>
           <a href={item.href} className="btn-secondary">
             עוד מידע

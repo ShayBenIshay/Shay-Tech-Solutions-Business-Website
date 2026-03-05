@@ -119,7 +119,7 @@ export default function EStoresSection({
               </div>
               <div className={styles.cardFooter}>
                 <OpenContactModalButton className={styles.cta}>
-                  אני מעוניין
+                  לעוד פרטים
                 </OpenContactModalButton>
               </div>
             </div>

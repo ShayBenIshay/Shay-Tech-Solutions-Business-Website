@@ -1,4 +1,5 @@
 import styles from "./OtherServicesSection.module.css";
+import OpenContactModalButton from "@/components/ContactModal/OpenContactModalButton";
 
 const cards = [
   {
@@ -9,7 +10,7 @@ const cards = [
   {
     title: "האתר קיים? 🔧",
     subtitle: "הופכים אתר קיים לכלי שעובד",
-    cta: "לשיפוץ אתר",
+    cta: "בואו נשפץ",
   },
   {
     title: "פיתוח אישי 🧠",
@@ -35,13 +36,13 @@ export default function OtherServicesSection() {
         </div>
         <div className={styles.grid}>
           {cards.map((card) => (
-            <div key={card.title} className={styles.card}>
+            <OpenContactModalButton key={card.title} className={styles.card}>
               <div className={styles.cardTop}>
                 <h3 className={styles.cardTitle}>{card.title}</h3>
                 <p className={styles.cardSub}>{card.subtitle}</p>
               </div>
               <button className="btn-primary">{card.cta}</button>
-            </div>
+            </OpenContactModalButton>
           ))}
         </div>
       </div>
