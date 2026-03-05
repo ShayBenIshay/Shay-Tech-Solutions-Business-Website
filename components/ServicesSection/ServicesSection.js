@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import styles from "./ServicesSection.module.css";
 import { useContactModal } from "@/components/ContactModal/ContactModalContext";
@@ -55,16 +55,34 @@ const services = [
 function ServiceCard({ service }) {
   const dotLottieRef = useRef(null);
   const timerRef = useRef(null);
+  const isMobileRef = useRef(false);
   const { open } = useContactModal();
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 499px)");
+    isMobileRef.current = mq.matches;
+    if (mq.matches && dotLottieRef.current) {
+      dotLottieRef.current.play();
+    }
+    const handler = (e) => { isMobileRef.current = e.matches; };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const dotLottieRefCallback = (dotLottie) => {
     dotLottieRef.current = dotLottie;
 
-    if (service.showLastFrame && dotLottie) {
+    if (dotLottie) {
       dotLottie.addEventListener("load", () => {
-        const lastFrame = dotLottie.totalFrames - 1;
-        dotLottie.setFrame(lastFrame);
-        dotLottie.pause();
+        if (isMobileRef.current) {
+          dotLottie.play();
+          return;
+        }
+        if (service.showLastFrame) {
+          const lastFrame = dotLottie.totalFrames - 1;
+          dotLottie.setFrame(lastFrame);
+          dotLottie.pause();
+        }
       });
     }
   };
@@ -145,7 +163,7 @@ export default function ServicesSection() {
             בונה אתרים, חנויות ומערכות שעובדות בשבילך
           </h2>
           <p className={`h3 ${styles.subtitle}`}>
-            מתכנון ופיתוח ועד ניהול שוטף ופרסום
+            ליווי מלא: מתכנון, דרך פיתוח מקצועי ועד ניהול שוטף ופרסום.
           </p>
         </div>
         <div className={styles.grid}>

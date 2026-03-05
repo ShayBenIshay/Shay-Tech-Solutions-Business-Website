@@ -1,6 +1,6 @@
 .section {
   background: var(--primary-transparent-bg);
-  padding: 40px 80px;
+  padding: 40px 64px;
   direction: rtl;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow:
     0 0 0 3px var(--primary-accent),
     var(--card-shadow);
@@ -200,9 +200,16 @@
 
 .btnSmall {
   font-size: 14px;
-  /* justify-content: flex-start; */
   width: 100px;
   padding: 4px 8px;
+  border: none;
+  background: none;
+}
+
+.btnSmall:hover {
+  background: none;
+  border: none;
+  text-decoration: underline;
 }
 
 @media (max-width: 1024px) {
@@ -216,6 +223,11 @@
 
   .card {
     padding: 16px;
+  }
+
+  .notes ul {
+    display: inline-block;
+    text-align: right;
   }
 }
 

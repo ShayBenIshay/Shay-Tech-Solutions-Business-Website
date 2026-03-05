@@ -17,7 +17,7 @@ export default function CTABannerSection({
         </OpenContactModalButton>
       </div>
       <div>
-        <div className={styles.contactDetils}>
+        <div className={styles.contactDetails}>
           <p>פרטים ליצירת קשר: </p>
           <div className={styles.contactDetailsRow}>
             <p className={styles.phone}>054-7573914</p>

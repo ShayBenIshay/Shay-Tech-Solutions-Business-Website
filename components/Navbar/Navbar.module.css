@@ -6,8 +6,8 @@
   border-bottom: 1px solid var(--primary-transparent-bg);
   transform: translateY(0);
   transition:
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
 
 .headerHidden {
@@ -22,30 +22,6 @@
   justify-content: space-evenly;
   padding: 16px 80px;
   gap: 128px;
-}
-
-.logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-.logoIcon {
-  width: 138px;
-  height: auto;
-}
-
-.logoText {
-  width: 188px;
-  height: auto;
-}
-
-.logoTagline {
-  width: 248px;
-  height: auto;
 }
 
 .fullLogo {
@@ -164,9 +140,23 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 768px) {
+  .nav {
+    gap: 8px;
+  }
+
   .navLinks {
     gap: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .fullLogo {
+    height: 96px;
+  }
+
+  .navLinks {
+    gap: 8px;
   }
 
   .navLinks li a {

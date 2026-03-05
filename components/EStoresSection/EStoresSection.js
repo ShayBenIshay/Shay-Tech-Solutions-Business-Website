@@ -127,7 +127,7 @@ export default function EStoresSection({
         </div>
       </div>
       <div className={styles.notes}>
-        <p className={styles.notesTitle}>✨ חשוב לדעת</p>
+        <p className={styles.notesTitle}>חשוב לדעת</p>
         <ul>
           <li>כל הדילים ניתנים לשדרוג</li>
           <li>ניתן לשלב תחזוקה, אחסון וליווי חודשי</li>

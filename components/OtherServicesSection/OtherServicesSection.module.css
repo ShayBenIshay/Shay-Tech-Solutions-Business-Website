@@ -36,10 +36,10 @@
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   padding: 24px 48px;
-  min-height: 203px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 16px;
   align-items: center;
   overflow: hidden;
   transition:

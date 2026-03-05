@@ -5,15 +5,23 @@ import styles from "./Navbar.module.css";
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
+  const peakScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const revealThreshold = window.innerHeight * 0.4;
 
-      if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
-        setHidden(true);
+      if (currentScrollY > lastScrollY.current) {
+        peakScrollY.current = currentScrollY;
+        if (currentScrollY > 80) {
+          setHidden(true);
+        }
       } else {
-        setHidden(false);
+        const scrolledUp = peakScrollY.current - currentScrollY;
+        if (currentScrollY === 0 || scrolledUp >= revealThreshold) {
+          setHidden(false);
+        }
       }
 
       lastScrollY.current = currentScrollY;

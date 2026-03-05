@@ -177,17 +177,7 @@ a {
 }
 
 /* ─── Section Utilities ─── */
-.section {
-  background: var(--primary-transparent-bg);
-  padding: 40px 80px;
-  direction: rtl;
-}
-
 @media (max-width: 1024px) {
-  .section {
-    padding: 24px 16px;
-  }
-
   .h2 {
     font-size: 44px;
   }
@@ -216,10 +206,6 @@ a {
 }
 
 @media (max-width: 768px) {
-  .section {
-    padding: 32px;
-  }
-
   .btn-primary-large {
     width: 250px;
     height: 56px;

@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   gap: 40px;
 }
 
@@ -41,12 +42,11 @@
   line-height: 36px;
 }
 
-.contactDetils,
+.contactDetails,
 .legalLinks {
   display: flex;
   flex-direction: row;
   gap: 16px;
-  align-items: center;
   justify-content: center;
   color: #ffffff;
   font-family: var(--font-body);
@@ -68,7 +68,7 @@
 
 @media (max-width: 768px) {
   .footer {
-    padding: 24px 16px;
+    padding: 24px 16px 4px 16px;
     gap: 24px;
   }
 
@@ -80,9 +80,18 @@
     font-size: 24px;
   }
 
-  .contactDetailsRow {
+  .legalLinks {
+    opacity: 0.8;
+  }
+
+  .contactDetails {
+    opacity: 0.8;
     flex-direction: column;
+    /* display: inline-block; */
     gap: 4px;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
   }
 }

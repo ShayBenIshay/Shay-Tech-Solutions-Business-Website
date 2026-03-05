@@ -329,7 +329,7 @@
 }
 
 /* ── Responsive ── */
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .section {
     padding: 24px 16px;
   }
@@ -346,5 +346,6 @@
 
   .card {
     flex: 1 1 100%;
+    padding: 16px 20px;
   }
 }

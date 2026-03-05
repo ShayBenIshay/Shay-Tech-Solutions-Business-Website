@@ -64,7 +64,7 @@ const portfolioItems = [
     title: "Be The Way",
     type: "פיתוח מותאם אישית",
     category: "פיתוח מותאם אישית",
-    cta: "פיתוח מותאם אישית",
+    cta: "לפיתוח מותאם",
     cta2: "לפרויקט המלא",
     screenshot: null,
     hasRealImage: false,

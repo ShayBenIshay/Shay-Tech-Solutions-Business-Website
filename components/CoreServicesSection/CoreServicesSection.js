@@ -10,7 +10,7 @@ const services = [
     cta: "לבניית חנות",
     cta2: "חבילות חנות",
     href: "/contact#talk-to-me",
-    href2: "/estore#estores",
+    href2: "/services/estore",
   },
   {
     title: "🔧 שיפוץ ותחזוקה - WordPress",
@@ -29,7 +29,7 @@ const services = [
       "אחסון + ניהול ותחזוקה",
       "אחסון, ניהול ותחזוקה + שעות פיתוח",
     ],
-    cta: "לחבילות אחסון וניהול",
+    cta: "לחבילת אחסון",
     cta2: "לצפייה בדילים",
     href: "/contact#talk-to-me",
     href2: "#hosting",
