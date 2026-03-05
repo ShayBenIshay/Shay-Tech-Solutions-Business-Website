@@ -24,7 +24,8 @@ const assistant = Assistant({
 });
 
 export const metadata = {
-  title: "שי טק סולושנס | בניית אתרים, חנויות, קידום ופיתוח",
+  title:
+    "שי טק סולושנס | בניית אתרים, חנויות אינטרנטיות, קידום אתרים ממומן ופיתוחים אישיים",
   description:
     "חנויות, אתרים, קידום, אחסון ופיתוחים אישיים. מתכנון ופיתוח ועד ניהול שוטף ופרסום – הכל במקום אחד.",
   metadataBase: new URL("https://www.shaytechsolutions.com"),
@@ -55,6 +56,30 @@ export default function RootLayout({ children }) {
       className={`${rubik.variable} ${assistant.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': ['LocalBusiness', 'ProfessionalService'],
+              name: 'שי טק סולושנס',
+              description: 'בניית אתרים, חנויות אינטרנטיות, קידום ממומן ופיתוח תוכנה מותאם אישית',
+              url: 'https://www.shaytechsolutions.com',
+              telephone: '+972547573914',
+              areaServed: 'IL',
+              inLanguage: 'he',
+              serviceType: [
+                'בניית אתרים',
+                'חנות אינטרנטית',
+                'קידום ממומן',
+                'פיתוח תוכנה',
+                'אחסון אתרים',
+                'בניית אתרי וורדפרס',
+              ],
+              image: 'https://www.shaytechsolutions.com/assets/fullLogo.png',
+            }),
+          }}
+        />
         <ContactModalProvider>
           <Navbar />
           {children}

@@ -7,9 +7,9 @@ import AdvancedServicesSection from "@/components/AdvancedServicesSection/Advanc
 import WhyMeSection from "@/components/WhyMeSection/WhyMeSection";
 
 export const metadata = {
-  title: "שירותים | שי טק סולושנס",
-  description:
-    "חנויות אינטרנטיות, אתרים עסקיים, קידום ממומן ואורגני, פתרונות דיגיטליים מקצה לקצה.",
+  title: 'שירותים | בניית אתרים, חנויות וקידום ממומן | שי טק סולושנס',
+  description: 'חנויות אינטרנטיות, בניית אתרים עסקיים, קידום ממומן בגוגל ופייסבוק, פיתוח תוכנה ופתרונות דיגיטליים מקצה לקצה.',
+  alternates: { canonical: 'https://www.shaytechsolutions.com/services' },
 };
 
 export default function ServicesPage() {

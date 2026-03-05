@@ -8,6 +8,12 @@ import PortfolioSection from '@/components/PortfolioSection/PortfolioSection';
 import HowIWorkSection from '@/components/HowIWorkSection/HowIWorkSection';
 import CTABannerSection from '@/components/CTABannerSection/CTABannerSection';
 
+export const metadata = {
+  title: 'שי טק סולושנס | בניית אתרים, חנויות אינטרנטיות וקידום ממומן',
+  description: 'בונה אתרים ומפתח תוכנה. בניית אתרים עסקיים, חנויות אינטרנטיות WooCommerce, קידום ממומן בגוגל ופייסבוק, ופיתוח תוכנה מותאם אישית.',
+  alternates: { canonical: 'https://www.shaytechsolutions.com' },
+};
+
 export default function HomePage() {
   return (
     <main>

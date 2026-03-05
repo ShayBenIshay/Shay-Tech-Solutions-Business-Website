@@ -1,4 +1,10 @@
 import HeroSection from "@/components/HeroSection/HeroSection";
+
+export const metadata = {
+  title: 'תיק עבודות | חנויות, אתרים ופיתוחים | שי טק סולושנס',
+  description: 'תיק עבודות – חנויות אינטרנטיות, אתרי וורדפרס, פיתוחים מותאמים ועוד. ראו דוגמאות אמיתיות מפרויקטים שבנויים לעבוד.',
+  alternates: { canonical: 'https://www.shaytechsolutions.com/portfolio' },
+};
 import CTABannerSection from "@/components/CTABannerSection/CTABannerSection";
 import FullPortfolioGrid from "@/components/FullPortfolioGrid/FullPortfolioGrid";
 import HowIWorkSection from "@/components/HowIWorkSection/HowIWorkSection";

@@ -98,6 +98,7 @@ function PortfolioCard({ item }) {
                 src={item.screenshot}
                 alt={item.title}
                 className={styles.screenshot}
+                loading="lazy"
               />
             ) : (
               <div className={styles.placeholderScreen}>
@@ -107,9 +108,9 @@ function PortfolioCard({ item }) {
           </div>
           <img
             src={imgLaptop}
-            fetchPriority="high"
             alt="laptop"
             className={styles.laptop}
+            loading="lazy"
           />
         </div>
       </div>

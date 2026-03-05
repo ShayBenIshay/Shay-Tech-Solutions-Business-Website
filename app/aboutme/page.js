@@ -1,4 +1,10 @@
 import HeroSection from "@/components/HeroSection/HeroSection";
+
+export const metadata = {
+  title: 'קצת עליי | שי טק סולושנס',
+  description: 'בונה אתרים ומפתח תוכנה עצמאי. עובד עם עסקים קטנים ובינוניים על בניית אתרים, חנויות אינטרנטיות, קידום ממומן ופיתוח מותאם אישית.',
+  alternates: { canonical: 'https://www.shaytechsolutions.com/aboutme' },
+};
 import CTABannerSection from "@/components/CTABannerSection/CTABannerSection";
 import NiceToMeetSection from "@/components/NiceToMeetSection/NiceToMeetSection";
 import HowIWorkSection from "@/components/HowIWorkSection/HowIWorkSection";

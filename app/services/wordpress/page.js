@@ -1,4 +1,10 @@
 import HeroSection from "@/components/HeroSection/HeroSection";
+
+export const metadata = {
+  title: 'בניית אתר וורדפרס מקצועי | בונה אתרים | שי טק סולושנס',
+  description: 'בניית אתרי וורדפרס לעסקים. בונה אתרים מקצועי עם ניסיון בעיצוב, פיתוח ואופטימיזציה. מתאים לעסקים קטנים ובינוניים.',
+  alternates: { canonical: 'https://www.shaytechsolutions.com/services/wordpress' },
+};
 import ComingSoonSection from "@/components/ComingSoonSection/ComingSoonSection";
 import CTABannerSection from "@/components/CTABannerSection/CTABannerSection";
 

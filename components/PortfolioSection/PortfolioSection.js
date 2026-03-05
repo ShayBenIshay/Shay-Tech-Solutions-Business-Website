@@ -58,6 +58,7 @@ function PortfolioCard({ item }) {
                 src={item.screenshot}
                 alt={item.title}
                 className={styles.screenshot}
+                loading="lazy"
               />
             ) : (
               <div className={styles.placeholderScreen}>
@@ -65,7 +66,7 @@ function PortfolioCard({ item }) {
               </div>
             )}
           </div>
-          <img src={imgLaptop2} alt="laptop" className={styles.laptop} />
+          <img src={imgLaptop2} alt="laptop" className={styles.laptop} loading="lazy" />
         </div>
         <div className={styles.cardActions}>
           <OpenContactModalButton className="btn-primary">
