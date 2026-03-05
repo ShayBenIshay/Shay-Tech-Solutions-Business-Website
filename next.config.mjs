@@ -10,7 +10,7 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
-  images: {},
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

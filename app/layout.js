@@ -1,29 +1,59 @@
-import './globals.css';
-import Script from 'next/script';
-import Navbar from '@/components/Navbar/Navbar';
-import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
-import ContactIcons from '@/components/ContactIcons/ContactIcons';
-import { ContactModalProvider } from '@/components/ContactModal/ContactModalContext';
-import ContactModal from '@/components/ContactModal/ContactModal';
-import CookieConsent from '@/components/CookieConsent/CookieConsent';
-import { GA_ID } from '@/lib/gtag';
+import "./globals.css";
+import Script from "next/script";
+import { Rubik, Assistant } from "next/font/google";
+import Navbar from "@/components/Navbar/Navbar";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import ContactIcons from "@/components/ContactIcons/ContactIcons";
+import { ContactModalProvider } from "@/components/ContactModal/ContactModalContext";
+import ContactModal from "@/components/ContactModal/ContactModal";
+import CookieConsent from "@/components/CookieConsent/CookieConsent";
+import { GA_ID } from "@/lib/gtag";
+
+const rubik = Rubik({
+  subsets: ["latin", "hebrew"],
+  weight: ["400", "500", "600"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const assistant = Assistant({
+  subsets: ["latin", "hebrew"],
+  weight: ["400", "500", "600"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata = {
-  title: 'שי טק סולושנס | בניית אתרים, חנויות, קידום ופיתוח',
-  description: 'חנויות, אתרים, קידום, אחסון ופיתוחים אישיים. מתכנון ופיתוח ועד ניהול שוטף ופרסום – הכל במקום אחד.',
+  title: "שי טק סולושנס | בניית אתרים, חנויות, קידום ופיתוח",
+  description:
+    "חנויות, אתרים, קידום, אחסון ופיתוחים אישיים. מתכנון ופיתוח ועד ניהול שוטף ופרסום – הכל במקום אחד.",
+  metadataBase: new URL("https://www.shaytechsolutions.com"),
+  openGraph: {
+    title:
+      "שי טק סולושנס | בניית אתרים, חנויות אינטרנטיות, קידום אתרים ממומן ופיתוחים אישיים",
+    description:
+      "חנויות, אתרים, קידום, אחסון ופיתוחים אישיים. מתכנון ופיתוח ועד ניהול שוטף ופרסום – הכל במקום אחד.",
+    url: "https://www.shaytechsolutions.com",
+    siteName: "שי טק סולושנס",
+    locale: "he_IL",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "שי טק סולושנס | בניית אתרים, חנויות אינטרנטיות, קידום אתרים ממומן ופיתוחים אישיים",
+    description:
+      "חנויות, אתרים, קידום, אחסון ופיתוחים אישיים. מתכנון ופיתוח ועד ניהול שוטף ופרסום – הכל במקום אחד.",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="he" dir="rtl">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&family=Aboreto&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="he"
+      dir="rtl"
+      className={`${rubik.variable} ${assistant.variable}`}
+    >
       <body>
         <ContactModalProvider>
           <Navbar />

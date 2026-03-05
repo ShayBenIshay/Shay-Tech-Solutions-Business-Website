@@ -105,7 +105,12 @@ function PortfolioCard({ item }) {
               </div>
             )}
           </div>
-          <img src={imgLaptop} alt="laptop" className={styles.laptop} />
+          <img
+            src={imgLaptop}
+            fetchPriority="high"
+            alt="laptop"
+            className={styles.laptop}
+          />
         </div>
       </div>
       <div className={styles.cardActions}>

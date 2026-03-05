@@ -1,7 +1,12 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import dynamic from "next/dynamic";
+
+const DotLottieReact = dynamic(
+  () => import("@lottiefiles/dotlottie-react").then((m) => m.DotLottieReact),
+  { ssr: false, loading: () => <div className={styles.lottiePlaceholder} /> }
+);
 import styles from "./ServicesSection.module.css";
 import { useContactModal } from "@/components/ContactModal/ContactModalContext";
 
