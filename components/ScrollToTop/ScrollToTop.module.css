@@ -1,6 +1,6 @@
 .btn {
   position: fixed;
-  bottom: 10%;
+  bottom: 12%;
   left: 5%;
   z-index: 200;
 
@@ -24,7 +24,8 @@
   opacity: 0;
   transform: translateY(12px);
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.2s ease,
     box-shadow 0.2s ease;
@@ -43,4 +44,10 @@
 
 .btn:active {
   transform: translateY(2px);
+}
+
+@media (max-width: 768px) {
+  .btn {
+    bottom: 18%;
+  }
 }

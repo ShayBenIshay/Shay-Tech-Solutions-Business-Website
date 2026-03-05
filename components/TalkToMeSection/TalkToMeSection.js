@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "./TalkToMeSection.module.css";
+import { event } from "@/lib/gtag";
 
 const isValidIsraeliPhone = (value) => {
   const digits = value.replace(/\D/g, "");
@@ -73,6 +74,7 @@ export default function TalkToMeSection() {
         return;
       }
 
+      event('contact_form_submit', { method: 'web3forms' });
       setIsSent(true);
       setFormData({ fullName: "", phone: "", message: "" });
       setPrivacyConsent(false);
