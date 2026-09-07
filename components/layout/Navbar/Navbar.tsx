@@ -32,36 +32,18 @@ export default function Navbar() {
   return (
     <header className={`${styles.header} ${hidden ? styles.headerHidden : ""}`}>
       <nav className={styles.nav}>
-        {/* Nav Links */}
+        {/* Nav Links — redesign (2026-09): Home/Plans/Project/About/Contact,
+            replacing the old Services-dropdown + Portfolio sitemap. Portfolio stays live at
+            its existing route, intentionally dropped from the nav (see redesign plan). */}
         <ul className={styles.navLinks}>
-          <li className={styles.dropdown}>
-            <Link href="/services" className={styles.dropdownTrigger}>
-              שירותים
-              <span className={styles.dropdownArrow}>▾</span>
-            </Link>
-            <div className={styles.dropdownMenu}>
-              <Link href="/services/estore" className={styles.dropdownItem}>
-                חנות אינטרנטית
-              </Link>
-              <Link href="/services/website" className={styles.dropdownItem}>
-                בניית אתרים
-              </Link>
-              <Link href="/services/hosting" className={styles.dropdownItem}>
-                אחסון אתרים
-              </Link>
-              <Link
-                href="/services/custom-development"
-                className={styles.dropdownItem}
-              >
-                פיתוח אישי
-              </Link>
-            </div>
+          <li>
+            <Link href="/plans">מסלולים</Link>
           </li>
           <li>
-            <Link href="/portfolio">עבודות</Link>
+            <Link href="/project">פרויקטים</Link>
           </li>
           <li>
-            <Link href="/aboutme">קצת עליי</Link>
+            <Link href="/about">אודות</Link>
           </li>
           <li>
             <Link href="/contact">צור קשר</Link>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useContactModal } from "./ContactModalContext";
 import TalkToMe from "@/components/sections/TalkToMe/TalkToMe";
 import styles from "./ContactModal.module.css";
@@ -37,7 +37,9 @@ export default function ContactModal() {
         <button className={styles.closeBtn} onClick={close} aria-label="סגור">
           ✕
         </button>
-        <TalkToMe compact />
+        <Suspense fallback={null}>
+          <TalkToMe compact />
+        </Suspense>
       </div>
     </div>
   );

@@ -7,17 +7,15 @@ type ChangeFrequency = NonNullable<
   MetadataRoute.Sitemap[number]["changeFrequency"]
 >;
 
+// Redesign (2026-09): /services/* and /aboutme are 301-redirected to /plans, /project, /about
+// (see public/.htaccess) — a sitemap should list canonical destinations, not redirect sources.
 const servicePaths: {
   path: string;
   priority: number;
   changeFrequency?: ChangeFrequency;
 }[] = [
-  { path: "/services", priority: 0.9, changeFrequency: "weekly" },
-  { path: "/services/estore", priority: 0.8 },
-  { path: "/services/website", priority: 0.8 },
-  { path: "/services/hosting", priority: 0.7 },
-  { path: "/services/advertising", priority: 0.7 },
-  { path: "/services/custom-development", priority: 0.7 },
+  { path: "/plans", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/project", priority: 0.8 },
 ];
 
 export const dynamic = "force-static";
@@ -55,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...portfolioEntries,
     {
-      url: `${SITE_URL}/aboutme`,
+      url: `${SITE_URL}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.6,

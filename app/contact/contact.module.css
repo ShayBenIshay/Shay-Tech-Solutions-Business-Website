@@ -1,0 +1,34 @@
+.sidebarBox {
+  background: var(--primary-transparent-bg);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebarTitle {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--primary);
+}
+
+.sidebarList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--primary);
+}
+
+.sidebarList a {
+  color: var(--primary-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

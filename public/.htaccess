@@ -8,6 +8,18 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 RewriteCond %{HTTP_HOST} ^shaytechsolutions\.com$ [NC]
 RewriteRule ^(.*)$ https://www.shaytechsolutions.com/$1 [R=301,L]
 
+# ─── Redesign (2026-09): retired routes -> new sitemap ──────────
+# output:'export' means next.config's redirects() is a no-op (Node/Vercel-only), so these
+# live here instead. Old page files under app/services/* and app/aboutme are left in place
+# unpublished/unlinked rather than deleted this pass — see the redesign plan.
+RewriteRule ^aboutme/?$ /about [R=301,L]
+RewriteRule ^services/estore/?$ /project [R=301,L]
+RewriteRule ^services/website/?$ /project [R=301,L]
+RewriteRule ^services/custom-development/?$ /project [R=301,L]
+RewriteRule ^services/hosting/?$ /plans [R=301,L]
+RewriteRule ^services/advertising/?$ /plans [R=301,L]
+RewriteRule ^services/?$ /plans [R=301,L]
+
 # ─── Security headers ───────────────────────────────────────────
 <IfModule mod_headers.c>
     # Force HTTPS for one year, include subdomains, allow HSTS preload

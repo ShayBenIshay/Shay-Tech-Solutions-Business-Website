@@ -1,10 +1,42 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import styles from "./TalkToMe.module.css";
 import { event } from "@/lib/gtag";
 import { PHONE_DISPLAY, PHONE_TEL_HREF, buildWhatsAppUrl } from "@/lib/contactInfo";
+
+// Redesign (2026-09): service-type dropdown + ?plan=/?type= pre-select.
+// Values/keys mirror the real link scheme other new pages use (e.g. /contact?plan=retainer-5,
+// /contact?type=project) — only the visible option labels are scaffold placeholders pending
+// Phase 2 copy review.
+export type ServiceValue = "" | "maintenance" | "retainer" | "project" | "growth" | "other";
+
+export const SERVICE_OPTIONS: { value: ServiceValue; label: string }[] = [
+  { value: "maintenance", label: "אחסון, ניהול ותחזוקה (placeholder)" },
+  { value: "retainer", label: "בנק שעות פיתוח / ריטיינר (placeholder)" },
+  { value: "project", label: "אפיון ופיתוח פרויקט (placeholder)" },
+  { value: "growth", label: "חבילת Growth (placeholder)" },
+  { value: "other", label: "ייעוץ / שירות נקודתי (placeholder)" },
+];
+
+const PLAN_TO_SERVICE: Record<string, ServiceValue> = {
+  "hosting-management": "maintenance",
+  "hosting-only": "maintenance",
+  "retainer-3": "retainer",
+  "retainer-5": "retainer",
+  "retainer-10": "retainer",
+  "growth-bundle": "growth",
+  "hourly-dev": "other",
+};
+
+function resolveServiceFromParams(params: URLSearchParams): ServiceValue | null {
+  const plan = params.get("plan");
+  if (plan && PLAN_TO_SERVICE[plan]) return PLAN_TO_SERVICE[plan];
+  if (params.get("type") === "project") return "project";
+  return null;
+}
 
 const WHATSAPP_URL = buildWhatsAppUrl(
   "שלום! ראיתי את האתר ואשמח לשמוע יותר על השירותים",
@@ -30,6 +62,7 @@ interface ContactFormData {
   fullName: string;
   phone: string;
   email: string;
+  service: ServiceValue;
   message: string;
 }
 
@@ -39,17 +72,21 @@ type FormErrors = Partial<Record<FormField | "submit" | "privacyConsent", string
 
 interface TalkToMeProps {
   compact?: boolean;
+  /** Rendered alongside the form card (desktop) / below it (mobile). Contact page only. */
+  sidebar?: ReactNode;
 }
 
 interface Web3FormsResponse {
   success: boolean;
 }
 
-export default function TalkToMe({ compact = false }: TalkToMeProps) {
+export default function TalkToMe({ compact = false, sidebar }: TalkToMeProps) {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: "",
     phone: "",
     email: "",
+    service: "",
     message: "",
   });
   const [botcheck, setBotcheck] = useState("");
@@ -58,12 +95,22 @@ export default function TalkToMe({ compact = false }: TalkToMeProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
+  // Pre-select the service dropdown from ?plan=/?type= after mount (avoids an SSR/CSR
+  // hydration mismatch on the static export, since searchParams only resolves in the browser).
+  // This is a one-time sync from an external source (the URL), not state derived from props —
+  // the lint rule's "compute during render" alternative isn't available here.
+  useEffect(() => {
+    const resolved = resolveServiceFromParams(searchParams);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (resolved) setFormData((prev) => ({ ...prev, service: resolved }));
+  }, [searchParams]);
+
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     const field = name as FormField;
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value } as ContactFormData));
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: null }));
   };
 
@@ -104,6 +151,7 @@ export default function TalkToMe({ compact = false }: TalkToMeProps) {
           name: formData.fullName,
           phone: formData.phone,
           email: formData.email || "לא צוין",
+          service: formData.service || "לא צוין",
           message: formData.message || "(לא צוין)",
           botcheck,
         }),
@@ -117,7 +165,7 @@ export default function TalkToMe({ compact = false }: TalkToMeProps) {
       }
 
       event("contact_form_submit", { method: "web3forms" });
-      setFormData({ fullName: "", phone: "", email: "", message: "" });
+      setFormData({ fullName: "", phone: "", email: "", service: "", message: "" });
       setBotcheck("");
       setPrivacyConsent(false);
       setIsSent(true);
@@ -175,29 +223,33 @@ export default function TalkToMe({ compact = false }: TalkToMeProps) {
           <span className={styles.dividerText}>או שלחו הודעה</span>
         </div>
 
-        {/* Contact form / success state */}
+        {/* Contact form / success state, optionally alongside a sidebar (contact page only) */}
         {isSent ? (
-          <div
-            className={`${styles.card} ${styles.formCard} ${styles.successCard}`}
-            role="alert"
-            aria-live="polite"
-          >
-            <div className={styles.successIconWrap}>
-              <span className={styles.successCheckmark}>✓</span>
-            </div>
-            <p className={styles.successTitle}>ההודעה נשלחה בהצלחה!</p>
-            <p className={styles.successSubtitle}>
-              אחזור אליכם תוך 24 שעות.
-            </p>
-            <button
-              type="button"
-              className={`btn-secondary ${styles.resetBtn}`}
-              onClick={() => setIsSent(false)}
+          <div className={sidebar ? styles.contentRow : undefined}>
+            <div
+              className={`${styles.card} ${styles.formCard} ${styles.successCard}`}
+              role="alert"
+              aria-live="polite"
             >
-              שלח הודעה נוספת
-            </button>
+              <div className={styles.successIconWrap}>
+                <span className={styles.successCheckmark}>✓</span>
+              </div>
+              <p className={styles.successTitle}>ההודעה נשלחה בהצלחה!</p>
+              <p className={styles.successSubtitle}>
+                אחזור אליכם תוך 24 שעות.
+              </p>
+              <button
+                type="button"
+                className={`btn-secondary ${styles.resetBtn}`}
+                onClick={() => setIsSent(false)}
+              >
+                שלח הודעה נוספת
+              </button>
+            </div>
+            {sidebar && <div className={styles.sidebar}>{sidebar}</div>}
           </div>
         ) : (
+          <div className={sidebar ? styles.contentRow : undefined}>
           <form
             className={`${styles.card} ${styles.formCard}`}
             onSubmit={handleSubmit}
@@ -289,6 +341,26 @@ export default function TalkToMe({ compact = false }: TalkToMeProps) {
               </label>
 
               <label className={styles.label}>
+                <span className={styles.labelText}>
+                  סוג השירות המבוקש{" "}
+                  <span className={styles.optional}>(אופציונלי)</span>
+                </span>
+                <select
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  className={styles.input}
+                >
+                  <option value="">בחרו סוג שירות (placeholder)</option>
+                  {SERVICE_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className={styles.label}>
                 <span className={styles.labelText}>במה אפשר לעזור לכם?</span>
                 <textarea
                   name="message"
@@ -341,6 +413,8 @@ export default function TalkToMe({ compact = false }: TalkToMeProps) {
               {isSubmitting ? "שולח..." : "שליחה"}
             </button>
           </form>
+          {sidebar && <div className={styles.sidebar}>{sidebar}</div>}
+          </div>
         )}
       </div>
     </section>

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Hero from "@/components/sections/Hero/Hero";
 import CTABanner from "@/components/sections/CTABanner/CTABanner";
 import Services from "@/components/sections/Services/Services";
@@ -5,6 +6,8 @@ import TalkToMe from "@/components/sections/TalkToMe/TalkToMe";
 import ProcessJourney, {
   type JourneyStep,
 } from "@/components/sections/ProcessJourney/ProcessJourney";
+import { EMAIL, EMAIL_HREF, PHONE_DISPLAY, PHONE_TEL_HREF } from "@/lib/contactInfo";
+import styles from "./contact.module.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,6 +23,27 @@ const afterContactSteps: JourneyStep[] = [
   { icon: "/assets/growth-icon.png", label: "ליווי להמשך צמיחה" },
 ];
 
+// Redesign scaffold (2026-09): the sidebar box is new structure (contact info is real, sourced
+// from lib/contactInfo — only the office-hours line is placeholder pending Phase 2).
+function ContactSidebar() {
+  return (
+    <div className={styles.sidebarBox}>
+      <h3 className={styles.sidebarTitle}>פרטי התקשרות (placeholder)</h3>
+      <ul className={styles.sidebarList}>
+        <li>
+          <strong>דוא&quot;ל: </strong>
+          <a href={EMAIL_HREF}>{EMAIL}</a>
+        </li>
+        <li>
+          <strong>טלפון: </strong>
+          <a href={PHONE_TEL_HREF}>{PHONE_DISPLAY}</a>
+        </li>
+        <li>שעות פעילות: טקסט לדוגמה (placeholder)</li>
+      </ul>
+    </div>
+  );
+}
+
 export default function ContactPage() {
   return (
     <main>
@@ -27,7 +51,9 @@ export default function ContactPage() {
         headline="מתחילים כאן."
         subtitle="שיחה קצרה יכולה להיות הצעד הראשון לאתר או מערכת שעובדים בשביל העסק שלך."
       />
-      <TalkToMe />
+      <Suspense fallback={null}>
+        <TalkToMe sidebar={<ContactSidebar />} />
+      </Suspense>
       <Services />
       <ProcessJourney
         title="מה קורה אחרי שמשאירים פרטים?"
