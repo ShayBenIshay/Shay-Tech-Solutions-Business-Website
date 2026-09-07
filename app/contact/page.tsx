@@ -47,6 +47,8 @@ export default function ContactPage() {
       <Hero
         headline="מתחילים כאן."
         subtitle="שיחה קצרה יכולה להיות הצעד הראשון לאתר או מערכת שעובדים בשביל העסק שלך."
+        btnOutline="לצפייה בתוכניות"
+        btnOutlineHref="/plans"
       />
       <Suspense fallback={null}>
         <TalkToMe sidebar={<ContactSidebar />} />
