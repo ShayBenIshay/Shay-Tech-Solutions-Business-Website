@@ -6,7 +6,7 @@ import TalkToMe from "@/components/sections/TalkToMe/TalkToMe";
 import styles from "./ContactModal.module.css";
 
 export default function ContactModal() {
-  const { isOpen, close } = useContactModal();
+  const { isOpen, presetService, close } = useContactModal();
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -38,7 +38,7 @@ export default function ContactModal() {
           ✕
         </button>
         <Suspense fallback={null}>
-          <TalkToMe compact />
+          <TalkToMe compact initialService={presetService} />
         </Suspense>
       </div>
     </div>

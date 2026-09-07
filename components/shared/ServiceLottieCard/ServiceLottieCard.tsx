@@ -136,7 +136,7 @@ export default function ServiceLottieCard({
       <div
         role="button"
         tabIndex={0}
-        onClick={open}
+        onClick={() => open()}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();

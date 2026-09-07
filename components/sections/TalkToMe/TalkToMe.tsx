@@ -7,18 +7,16 @@ import styles from "./TalkToMe.module.css";
 import { event } from "@/lib/gtag";
 import { PHONE_DISPLAY, PHONE_TEL_HREF, buildWhatsAppUrl } from "@/lib/contactInfo";
 
-// Redesign (2026-09): service-type dropdown + ?plan=/?type= pre-select.
-// Values/keys mirror the real link scheme other new pages use (e.g. /contact?plan=retainer-5,
-// /contact?type=project) — only the visible option labels are scaffold placeholders pending
-// Phase 2 copy review.
+// Service-type dropdown + ?plan=/?type= pre-select. Values/keys mirror the link scheme other
+// pages use (e.g. /contact?plan=retainer-5, /contact?type=project).
 export type ServiceValue = "" | "maintenance" | "retainer" | "project" | "growth" | "other";
 
 export const SERVICE_OPTIONS: { value: ServiceValue; label: string }[] = [
-  { value: "maintenance", label: "אחסון, ניהול ותחזוקה (placeholder)" },
-  { value: "retainer", label: "בנק שעות פיתוח / ריטיינר (placeholder)" },
-  { value: "project", label: "אפיון ופיתוח פרויקט (placeholder)" },
-  { value: "growth", label: "חבילת Growth (placeholder)" },
-  { value: "other", label: "ייעוץ / שירות נקודתי (placeholder)" },
+  { value: "maintenance", label: "אחסון, ניהול ותחזוקה (₪500/חודש)" },
+  { value: "retainer", label: "בנק שעות פיתוח / ריטיינר (מ-₪600/חודש)" },
+  { value: "project", label: "אפיון ופיתוח פרויקט (₪600–₪2,000)" },
+  { value: "growth", label: "חבילת Growth (₪5,990/חודש)" },
+  { value: "other", label: "ייעוץ / שירות נקודתי (₪300/שעה)" },
 ];
 
 const PLAN_TO_SERVICE: Record<string, ServiceValue> = {
@@ -74,19 +72,21 @@ interface TalkToMeProps {
   compact?: boolean;
   /** Rendered alongside the form card (desktop) / below it (mobile). Contact page only. */
   sidebar?: ReactNode;
+  /** Pre-fills the service dropdown (modal usage — the contact page uses ?plan=/?type= instead). */
+  initialService?: ServiceValue;
 }
 
 interface Web3FormsResponse {
   success: boolean;
 }
 
-export default function TalkToMe({ compact = false, sidebar }: TalkToMeProps) {
+export default function TalkToMe({ compact = false, sidebar, initialService }: TalkToMeProps) {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: "",
     phone: "",
     email: "",
-    service: "",
+    service: initialService || "",
     message: "",
   });
   const [botcheck, setBotcheck] = useState("");
@@ -351,7 +351,7 @@ export default function TalkToMe({ compact = false, sidebar }: TalkToMeProps) {
                   onChange={handleChange}
                   className={styles.input}
                 >
-                  <option value="">בחרו סוג שירות (placeholder)</option>
+                  <option value="">בחרו סוג שירות</option>
                   {SERVICE_OPTIONS.map((opt) => (
                     <option key={opt.value} value={opt.value}>
                       {opt.label}

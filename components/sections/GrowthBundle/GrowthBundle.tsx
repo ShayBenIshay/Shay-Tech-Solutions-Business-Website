@@ -13,20 +13,22 @@ interface GrowthBundleProps {
 }
 
 const defaultFeatures = [
-  "פיצ'ר לדוגמה 1 (placeholder)",
-  "פיצ'ר לדוגמה 2 (placeholder)",
-  "פיצ'ר לדוגמה 3 (placeholder)",
+  "אחסון שרת מהיר + ניהול ותחזוקה שוטפת מלאה",
+  "ריטיינר פיתוח מורחב של 10 שעות חודשיות לכל שינוי, דף נחיתה או שדרוג",
+  "ניהול קמפיינים ממומנים ב-Google Ads ו-Meta (Facebook/Instagram)",
+  "יצירת קריאייטיב, קופירייטינג ובניית מודעות",
+  "דוחות ביצועים חודשיים, ניטור לידים ואופטימיזציה מתמדת",
 ];
 
 export default function GrowthBundle({
   id = "growth-bundle",
-  eyebrow = "פתרון מקיף (placeholder)",
-  title = "חבילת ה-Growth (placeholder)",
-  lead = "טקסט תיאור לדוגמה — יוחלף בשלב 2.",
-  price = "₪0,000",
-  priceNote = "/ חודש (placeholder)",
+  eyebrow = "פתרון מקיף לצמיחה",
+  title = "חבילת ה-Growth: מעטפת טכנית מלאה + ניהול שיווק",
+  lead = "כל מה שהאתר והעסק שלכם צריכים כדי לגדול – במעטפת אחת כוללת ובכתובת אחת.",
+  price = "₪5,990",
+  priceNote = "/ חודש (ללא תקציב הפרסום עצמו)",
   features = defaultFeatures,
-  ctaLabel = "דברו איתנו (placeholder)",
+  ctaLabel = "דברו איתנו על חבילת ה-Growth",
 }: GrowthBundleProps) {
   return (
     <section className={styles.section} id={id}>
@@ -43,7 +45,7 @@ export default function GrowthBundle({
             <li key={feature}>{feature}</li>
           ))}
         </ul>
-        <OpenContactModalButton className="btn-primary-large">
+        <OpenContactModalButton className="btn-primary-large" presetService="growth">
           {ctaLabel}
         </OpenContactModalButton>
       </div>

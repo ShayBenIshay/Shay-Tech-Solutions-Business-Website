@@ -2,15 +2,18 @@ import Link from "next/link";
 import styles from "./CTABanner.module.css";
 import OpenContactModalButton from "@/components/layout/ContactModal/OpenContactModalButton";
 import { PHONE_DISPLAY, EMAIL } from "@/lib/contactInfo";
+import type { ServiceValue } from "@/components/sections/TalkToMe/TalkToMe";
 
 interface CTABannerProps {
   headline?: string;
   sub?: string;
+  presetService?: ServiceValue;
 }
 
 export default function CTABanner({
   headline = "מוכנים לצעד הבא?",
   sub = "שיחת התאמה של 20 דקות - חינם, ללא התחייבות. אחזור אליכם תוך 24 שעות.",
+  presetService,
 }: CTABannerProps) {
   return (
     <footer className={styles.footer} id="cta">
@@ -19,7 +22,7 @@ export default function CTABanner({
           <p className={`h2 ${styles.headline}`}>{headline}</p>
           <p className={`h3 ${styles.sub}`}>{sub}</p>
         </div>
-        <OpenContactModalButton className="btn-primary-large">
+        <OpenContactModalButton className="btn-primary-large" presetService={presetService}>
           לתיאום שיחה
         </OpenContactModalButton>
       </div>

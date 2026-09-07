@@ -6,10 +6,12 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import type { ServiceValue } from "@/components/sections/TalkToMe/TalkToMe";
 
 interface ContactModalContextValue {
   isOpen: boolean;
-  open: () => void;
+  presetService: ServiceValue;
+  open: (presetService?: ServiceValue) => void;
   close: () => void;
 }
 
@@ -19,11 +21,15 @@ const ContactModalContext = createContext<ContactModalContextValue | null>(
 
 export function ContactModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const open = () => setIsOpen(true);
+  const [presetService, setPresetService] = useState<ServiceValue>("");
+  const open = (service?: ServiceValue) => {
+    setPresetService(service || "");
+    setIsOpen(true);
+  };
   const close = () => setIsOpen(false);
 
   return (
-    <ContactModalContext.Provider value={{ isOpen, open, close }}>
+    <ContactModalContext.Provider value={{ isOpen, presetService, open, close }}>
       {children}
     </ContactModalContext.Provider>
   );

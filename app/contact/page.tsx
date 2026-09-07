@@ -23,12 +23,10 @@ const afterContactSteps: JourneyStep[] = [
   { icon: "/assets/growth-icon.png", label: "ליווי להמשך צמיחה" },
 ];
 
-// Redesign scaffold (2026-09): the sidebar box is new structure (contact info is real, sourced
-// from lib/contactInfo — only the office-hours line is placeholder pending Phase 2).
 function ContactSidebar() {
   return (
     <div className={styles.sidebarBox}>
-      <h3 className={styles.sidebarTitle}>פרטי התקשרות (placeholder)</h3>
+      <h3 className={styles.sidebarTitle}>פרטי התקשרות</h3>
       <ul className={styles.sidebarList}>
         <li>
           <strong>דוא&quot;ל: </strong>
@@ -38,7 +36,6 @@ function ContactSidebar() {
           <strong>טלפון: </strong>
           <a href={PHONE_TEL_HREF}>{PHONE_DISPLAY}</a>
         </li>
-        <li>שעות פעילות: טקסט לדוגמה (placeholder)</li>
       </ul>
     </div>
   );

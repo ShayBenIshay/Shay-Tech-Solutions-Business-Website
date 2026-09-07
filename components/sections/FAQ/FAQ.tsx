@@ -13,7 +13,7 @@ interface FAQProps {
 
 export default function FAQ({
   id = "faq",
-  title = "שאלות נפוצות (placeholder)",
+  title = "שאלות נפוצות",
   items,
 }: FAQProps) {
   return (

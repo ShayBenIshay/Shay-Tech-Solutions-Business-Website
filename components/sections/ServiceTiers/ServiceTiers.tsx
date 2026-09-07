@@ -95,7 +95,10 @@ export default function ServiceTiers({
                       {expanded ? "קרא פחות" : "קרא עוד"}
                     </button>
                   )}
-                  <OpenContactModalButton className={styles.cta}>
+                  <OpenContactModalButton
+                    className={styles.cta}
+                    presetService={plan.serviceValue}
+                  >
                     לפרטים ותיאום
                   </OpenContactModalButton>
                 </div>

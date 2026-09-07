@@ -15,7 +15,7 @@ interface LifecycleTimelineProps {
 
 export default function LifecycleTimeline({
   id = "lifecycle",
-  title = "שלבי הפרויקט (placeholder)",
+  title = "שלבי הפרויקט",
   steps,
 }: LifecycleTimelineProps) {
   return (

@@ -1,3 +1,5 @@
+import type { ServiceValue } from "@/components/sections/TalkToMe/TalkToMe";
+
 export interface ServicePlan {
   title: string;
   price: string;
@@ -8,6 +10,8 @@ export interface ServicePlan {
   focus: string;
   badge?: string;
   highlighted?: boolean;
+  /** Pre-fills the contact modal's service dropdown when this plan's CTA is clicked. */
+  serviceValue?: ServiceValue;
 }
 
 // Website-only pricing — no BusinessBrain product/rate-card for one-time site builds yet.
