@@ -36,18 +36,18 @@
   align-items: stretch;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 1100px;
+  max-width: 900px;
 }
 
 /* "pair" variant: single-service pages (e.g. /services/estore) pairing one
    service card with the portfolio-examples card. */
 .gridPair {
   grid-template-columns: repeat(2, 1fr);
-  max-width: 860px;
+  max-width: 680px;
 }
 
 .gridPair .card {
-  max-width: 350px;
+  max-width: 280px;
 }
 
 /* ── Card ── */
@@ -55,13 +55,13 @@
   background: #ffffff;
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
-  padding: 24px;
-  flex: 1 1 380px;
-  max-width: 422px;
+  padding: 16px;
+  flex: 1 1 260px;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 24px;
+  gap: 12px;
   overflow: hidden;
   transition:
     transform 0.2s ease,
@@ -76,6 +76,8 @@
 
 .lottieWrapper {
   width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -133,12 +135,12 @@
   }
 
   .card {
-    max-width: 350px;
+    max-width: 280px;
     justify-self: center;
     gap: 4px;
   }
 
   .lottie {
-    max-width: 350px;
+    max-width: 280px;
   }
 }

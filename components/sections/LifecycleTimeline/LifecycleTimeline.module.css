@@ -1,0 +1,132 @@
+.section {
+  background: var(--white);
+  padding: 40px 80px;
+  direction: rtl;
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.marker {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.markerNumber {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary-accent);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.step:not(:last-child) .marker::after {
+  content: "";
+  position: absolute;
+  top: 48px;
+  bottom: -40px;
+  width: 2px;
+  background: rgba(65, 38, 98, 0.15);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 6px;
+}
+
+.stepHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.stepTitle {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--primary);
+}
+
+.priceNote {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-accent);
+  background: var(--primary-transparent-bg);
+  border-radius: var(--btn-radius);
+  padding: 4px 14px;
+  white-space: nowrap;
+}
+
+.stepBody {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--primary);
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 32px 24px;
+  }
+
+  .step {
+    gap: 16px;
+  }
+
+  .markerNumber {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .step:not(:last-child) .marker::after {
+    top: 40px;
+  }
+}

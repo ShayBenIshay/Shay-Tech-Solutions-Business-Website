@@ -182,6 +182,32 @@
   text-align: right;
 }
 
+/* ── Content row (form + sidebar, contact page only) ── */
+.contentRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+}
+
+.sidebar {
+  flex: 1 1 280px;
+  max-width: 320px;
+}
+
+@media (max-width: 900px) {
+  .contentRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sidebar {
+    max-width: 100%;
+  }
+}
+
 /* ── Form Card ── */
 .formCard {
   cursor: default;
